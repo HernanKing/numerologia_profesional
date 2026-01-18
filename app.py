@@ -2,7 +2,7 @@ import streamlit as st
 import unicodedata
 from datetime import datetime
 
-# --- 1. BASE DE DATOS Y LÓGICA ---
+# --- 1. CONFIGURACIÓN DE DATOS ---
 MAPA_VALORES = {
     'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8,'I':9,
     'J':1,'K':2,'L':3,'M':4,'N':5,'O':6,'P':7,'Q':8,'R':9,
@@ -17,17 +17,17 @@ ELEMENTOS = {
 }
 
 REGALOS_DESC = {
-    1: "El Don de la Iniciativa: Tienes una chispa divina para empezar de cero. Tu regalo es la valentía y la originalidad.",
-    2: "El Don de la Intuición: Tienes el don de leer a las personas. Eres el puente que une a los demás.",
-    3: "El Don de la Palabra: Naciste con el don de la comunicación y el optimismo. Tu voz tiene poder.",
-    4: "El Don de la Disciplina: Tienes el don de la manifestación técnica. Capacidad de dar forma a lo invisible.",
-    5: "El Don de la Versatilidad: Tu regalo es la adaptabilidad absoluta. Imán para nuevas experiencias.",
-    6: "El Don de la Armonía: Tienes el don del toque sanador. Eres una sanadora del hogar.",
-    7: "El Don de la Sabiduría: Acceso directo a la biblioteca del conocimiento universal.",
-    8: "El Don de la Proyección: Tienes el don de la abundancia y el mando natural.",
-    9: "El Don de la Compasión: Tienes el don del amor universal y sabiduría de vidas pasadas.",
-    11: "El Don del Canal: Eres un portal de luz. Tu regalo es la visión profética.",
-    22: "El Don de la Materialización: Tienes el don de bajar el cielo a la tierra."
+    1: "El Don de la Iniciativa Tienes una chispa divina para empezar de cero. Tu regalo es la valentía y la originalidad. Nunca te faltarán ideas nuevas ni la fuerza para ser la primera en algo. Eres una líder nata por derecho divino.",
+    2: "El Don de la Intuición Tienes el don de 'leer' a las personas y las situaciones. Tu regalo es la diplomacia y la sensibilidad. Eres el puente que une a los demás y tienes una capacidad natural para traer paz donde hay conflicto.",
+    3: "El Don de la Palabra Naciste con el don de la comunicación y el optimismo. Tu presencia alegra los espacios. Tienes la facilidad de expresar ideas complejas de forma sencilla y creativa. Tu voz tiene poder.",
+    4: "El Don de la Disciplina Tienes el don de la manifestación técnica. Tu regalo es la capacidad de dar forma a lo invisible. Eres confiable, organizada y capaz de construir estructuras que duran para siempre.",
+    5: "El Don de la Versatilidad Tu regalo es la adaptabilidad absoluta. Tienes la bendición de aprender rápido y de sentirte en casa en cualquier lugar del mundo. Eres un imán para las nuevas experiencias y la libertad.",
+    6: "El Don de la Armonía Tienes el don del 'toque sanador'. Tu regalo es crear belleza y bienestar a tu alrededor. La gente busca tu consejo porque emanas protección y equilibrio. Eres una sanadora del hogar.",
+    7: "El Don de la Sabiduría Tienes acceso directo a la biblioteca del conocimiento universal. Tu regalo es una mente analítica y espiritual. Comprendes los misterios de la vida con una facilidad asombrosa. Eres una guía intelectual.",
+    8: "El Don de la Proyección Tienes el don de la abundancia y el mando. Tu regalo es saber cómo generar recursos y cómo dirigir grandes proyectos. El universo te otorga autoridad natural para manejar el mundo material.",
+    9: "El Don de la Compasión Tienes el don del amor universal. Tu regalo es una sabiduría que viene de vidas pasadas. Eres capaz de entender y perdonar a todos. Tu presencia eleva la frecuencia de cualquier grupo.",
+    11: "El Don del Canal Eres un portal de luz. Tu regalo es la visión profética y la inspiración constante. No necesitas buscar respuestas, las respuestas te llegan a través de señales claras.",
+    22: "El Don de la Materialización Tienes el don de 'bajar el cielo a la tierra'. Puedes convertir sueños utópicos en empresas o realidades tangibles para el beneficio de muchos."
 }
 
 def normalizar(t):
@@ -51,7 +51,7 @@ def calc_letras(palabra):
         elif l.isalpha(): c_s += v
     return v_s, c_s
 
-# --- 2. ESTILOS LUXURY CORREGIDOS ---
+# --- 2. ESTILOS LUXURY ACTUALIZADOS ---
 st.set_page_config(page_title="Identidad 11:11", layout="wide")
 
 st.markdown("""
@@ -64,7 +64,7 @@ st.markdown("""
         font-size: 80px !important;
         text-align: center;
         font-weight: 900;
-        margin-bottom: 5px !important; /* Aumentado para evitar choque */
+        margin-bottom: 5px !important;
     }
     .subtitulo-profesional {
         color: #D4AF37 !important;
@@ -72,35 +72,39 @@ st.markdown("""
         text-align: center;
         letter-spacing: 7px;
         margin-bottom: 40px !important;
-        font-weight: 400;
     }
 
-    /* Cuadros de Resultados (Métricas) */
     [data-testid="stMetricValue"] { color: #D4AF37 !important; font-size: 3.5rem !important; font-weight: 900 !important; }
     [data-testid="stMetricLabel"] p { color: #B8860B !important; font-weight: 800 !important; font-size: 1rem !important; }
     
-    /* Pestañas */
     .stTabs [data-baseweb="tab"] { color: #B8860B !important; font-weight: bold !important; font-size: 1.1rem; }
     .stTabs [aria-selected="true"] { border-bottom: 4px solid #D4AF37 !important; }
 
-    /* CUADRO DORADO (Luxury Box) - Letra Blanca */
     .luxury-box {
         background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-        padding: 20px;
-        border-radius: 12px;
+        padding: 25px;
+        border-radius: 15px;
         color: #FFFFFF !important;
         font-weight: 600;
-        font-size: 1.1rem;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
-        margin: 15px 0px;
-        text-align: center;
+        font-size: 1.15rem;
+        margin: 20px 0px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     }
     
-    .gold-sub { color: #B8860B; font-weight: bold; font-size: 1.4rem; border-bottom: 2px solid #D4AF37; margin-top: 20px; }
+    .luxury-text-block {
+        color: #2F2F2F;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        background-color: #FAFAFA;
+        padding: 30px;
+        border-radius: 10px;
+        border-left: 5px solid #D4AF37;
+    }
+    
+    .gold-header { color: #B8860B; font-weight: bold; font-size: 1.5rem; margin-top: 25px; border-bottom: 1px solid #D4AF37; }
     </style>
     """, unsafe_allow_html=True)
 
-# Títulos con espaciado corregido
 st.markdown("<p class='titulo-vibracional'>MAPA VIBRACIONAL</p>", unsafe_allow_html=True)
 st.markdown("<p class='subtitulo-profesional'>NUMEROLOGÍA PROFESIONAL</p>", unsafe_allow_html=True)
 
@@ -122,13 +126,11 @@ if nombre_raw:
     pers = reducir(c_t)
     dest = reducir(alma + pers)
     mision = reducir(v_t + c_t)
-    
     d, m, a = fecha_nac.day, fecha_nac.month, fecha_nac.year
     s_dir = reducir(sum(int(x) for x in (str(d)+str(m)+str(a))))
     s_grp = reducir(reducir(d) + reducir(m) + reducir(a))
     num_camino = max(s_dir, s_grp)
     txt_camino = f"{num_camino}/{reducir(num_camino,False)}" if num_camino in [11,22,33] else str(num_camino)
-    
     regalo = reducir(sum(int(x) for x in str(a)[-2:]))
     anio_p = reducir(sum(int(x) for x in (str(d)+str(m)+str(anio_ref))))
 
@@ -138,7 +140,6 @@ if nombre_raw:
     e_dest = ELEMENTOS.get(dest, "N/A")
     conteo = [e_alma, e_pers, e_dest]
     
-    # --- PESTAÑAS ---
     t1, t2, t3 = st.tabs(["🔱 MAPEO PRINCIPAL", "📖 SIGNIFICADO DE LOS NÚMEROS", "🌀 TRIADA DE REALIZACIÓN"])
 
     with t1:
@@ -157,28 +158,96 @@ if nombre_raw:
         c8.metric("⚛️ TRIADA DE REALIZACIÓN", f"{len(set(conteo))} Elem.")
 
     with t2:
-        st.markdown("<p class='gold-sub'>🟢 Significado de los Números</p>", unsafe_allow_html=True)
-        st.markdown("Aquí puedes consultar tu mini-diccionario de números base, maestros y guía angelical.")
+        st.markdown("<p class='gold-header'>🧮 SIGNIFICADO DE LOS NÚMEROS</p>", unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class='luxury-text-block'>
+        <b>🟢 Los Números Base (Del 1 al 9) NUMEROLOGÍA</b><br>
+        <b>1 - El Líder / El Iniciador:</b> Es la energía del "Yo Soy". Representa independencia, originalidad y el impulso para comenzar cosas nuevas. En desequilibrio: puede ser autoritario o egoísta.<br>
+        <b>2 - El Mediador / El Diplomático:</b> Es la energía del "Nosotros". Busca la paz, el equilibrio y la cooperación. Es intuitivo y sensible. En desequilibrio: puede ser dependiente o indeciso.<br>
+        <b>3 - El Comunicador / El Artista:</b> Es la energía de la autoexpresión. Representa la alegría, la creatividad, la palabra y la sociabilidad. En desequilibrio: puede ser superficial o disperso.<br>
+        <b>4 - El Constructor / La Estructura:</b> Es la energía del orden. Representa el trabajo duro, la lealtad, la organización y las bases sólidas. En desequilibrio: puede ser rígido o testarudo.<br>
+        <b>5 - El Aventurero / La Libertad:</b> Es la energía del cambio. Representa la curiosidad, el movimiento, los viajes y la adaptabilidad. En desequilibrio: puede ser impaciente o irresponsable.<br>
+        <b>6 - El Protector / El Sanador:</b> Es la energía del amor y la familia. Representa la responsabilidad, la armonía, la belleza y el servicio a los demás. En desequilibrio: puede ser perfeccionista o entrometido.<br>
+        <b>7 - El Sabio / El Analista:</b> Es la energía de la introspección. Busca la verdad, el conocimiento profundo, la espiritualidad y la soledad necesaria. En desequilibrio: puede ser frío o cínico.<br>
+        <b>8 - El Estratega / El Poder:</b> Es la energía de la abundancia material. Representa el éxito, la autoridad, la justicia y la capacidad de manifestar riqueza. En desequilibrio: puede ser ambicioso en exceso o materialista.<br>
+        <b>9 - El Humanista / El Guía:</b> Es la energía del cierre de ciclos. Representa la compasión universal, el idealismo y la entrega desinteresada. En desequilibrio: puede ser dramático o vivir en el pasado.<br><br>
+        
+        <b>✨ Los Números Maestros (No se reducen)</b><br>
+        <b>11 - El Mensajero / El Visionario:</b> (Tu número y el de tu marca). Es un canal de luz. Tiene una intuición aguda y su misión es inspirar y elevar la consciencia de los demás. Es el "Puente" entre mundos.<br>
+        <b>22 - El Arquitecto Maestro:</b> (Tu día de nacimiento). Es el número más poderoso. Tiene la visión del 11 pero la capacidad práctica del 4. Puede construir proyectos gigantescos que beneficien a la humanidad.<br>
+        <b>33 - El Guía Espiritual:</b> Es la vibración del "Amor Incondicional". Su misión es la sanación a gran escala y la enseñanza a través del ejemplo de sacrificio y servicio puro.<br><br>
+        
+        <b>🕊️ Guía Espiritual y Angelical de los Números</b><br>
+        <b>1 - El Rayo de la Creación</b><br>
+        Espiritual: Representa la unidad con la Fuente. Es el "Yo Soy" manifestado. Simboliza que tus pensamientos son semillas de realidad.<br>
+        Angelical: Los ángeles te dicen: "Mantente positivo. Tus intenciones se están manifestando instantáneamente. Enfócate en tus deseos, no en tus miedos".<br>
+        <b>2 - La Dualidad Sagrada</b><br>
+        Espiritual: Representa el equilibrio, la paciencia y el principio femenino de la recepción. Es la fe en que todo llega en el tiempo divino.<br>
+        Angelical: "Ten fe. Tus oraciones están siendo escuchadas y trabajadas detrás de escena. No te rindas justo antes de que ocurra el milagro".<br>
+        <b>3 - La Santísima Trinidad</b><br>
+        Espiritual: Representa la expansión y la conexión con los Maestros Ascendidos. Es la unión de mente, cuerpo y espíritu.<br>
+        Angelical: "Los Maestros Ascendidos están cerca de ti, respondiendo a tus peticiones y ayudándote a encontrar tu alegría creativa".<br>
+        <b>4 - La Protección de la Tierra</b><br>
+        Espiritual: Representa el orden divino y la presencia de los elementos. Es el número de los cimientos espirituales.<br>
+        Angelical: "¡No estás solo! Los ángeles te rodean para darte seguridad y apoyo. Pide ayuda para organizar tu vida y tus ideas".<br>
+        <b>5 - La Alquimia del Cambio</b><br>
+        Espiritual: Representa la evolución del alma a través de la experiencia. Es el número de la libertad y el aprendizaje por el movimiento.<br>
+        Angelical: "Un cambio importante y positivo viene hacia ti. Suelta lo viejo con gratitud para permitir que lo nuevo transforme tu vida".<br>
+        <b>6 - La Armonía del Corazón</b><br>
+        Espiritual: Representa el equilibrio entre lo material y lo espiritual. Es el servicio basado en el amor incondicional.<br>
+        Angelical: "Equilibra tus pensamientos entre el cielo y la tierra. Deja tus preocupaciones materiales en nuestras manos y enfócate en el amor y la gratitud".<br>
+        <b>7 - La Iluminación Sagrada</b><br>
+        Espiritual: Es el número de la perfección divina y el misticismo. Representa el camino del buscador que encuentra la verdad en su interior.<br>
+        Angelical: "¡Felicidades! Estás en el camino correcto. Sigue confiando en tu intuición, pues estás alineado con tu propósito divino".<br>
+        <b>8 - El Infinito y la Justicia</b><br>
+        Espiritual: Representa el flujo infinito de energía (karma y dharma). Lo que das, vuelve a ti multiplicado. Es la ley de causa y efecto.<br>
+        Angelical: "La abundancia fluye hacia ti. Confía en que el universo es infinito. Usa tu poder y tus recursos para el bien común".<br>
+        <b>9 - La Consciencia Crística</b><br>
+        Espiritual: Representa el amor universal y la culminación del viaje del alma. Es el número del "Trabajador de la Luz".<br>
+        Angelical: "Es hora de ponerte a trabajar en tu misión de vida sin demora. El mundo necesita tu luz. Cierra ciclos para empezar tu labor sagrada".<br><br>
+        
+        <b>✨ Los Números Maestros (Frecuencias Angélicas Superiores)</b><br>
+        <b>11 - El Portal de Luz (Tu Marca)</b><br>
+        Espiritual: Es el portal de la iluminación. Representa a los "Mensajeros de la Nueva Era". Es la conexión directa con la sabiduría del alma.<br>
+        Angelical: "Presta mucha atención a tus ideas repetitivas; son las respuestas a tus oraciones. Estás siendo llamado a guiar a otros con tu ejemplo".<br>
+        <b>22 - El Arquitecto del Cielo en la Tierra</b><br>
+        Espiritual: Representa la capacidad de manifestar los sueños más elevados en la realidad física. Es la maestría sobre la materia.<br>
+        Angelical: "Mantén la visión a largo plazo. Tienes la protección divina para construir algo grande que servirá a muchas personas. Actúa con disciplina".<br>
+        <b>33 - El Avatar del Amor</b><br>
+        Espiritual: Es la frecuencia de la compasión absoluta. Representa la energía del Maestro que enseña a través del amor puro.<br>
+        Angelical: "Tu vibración está elevando la de quienes te rodean. Tu presencia es una bendición. Enfócate en sanar a través de tu bondad".<br><br>
+        
+        <b>ELEMENTOS</b><br>
+        <b>🔥 FUEGO (1, 3, 9)</b><br>
+        Fuerza, Acción, Intuición y Pasión. Significado: Son personas que inician, que brillan y que tienen mucha energía vital. En la tríada: Si alguien tiene muchos números de fuego, es una persona que difícilmente se queda quieta; necesita crear y liderar.<br><br>
+        <b>🌱 TIERRA (4, 8, 22)</b><br>
+        Estructura, Orden, Manifestación y Realidad. Significado: Es la capacidad de concretar. Son personas realistas, ambiciosas en el buen sentido y muy trabajadoras. En la tríada: Si predomina la tierra, la persona es el "ancla" de su familia o empresa. El 22 es el grado más alto de tierra (el constructor maestro).<br><br>
+        <b>💨 AIRE (5, 7, 11)</b><br>
+        Intelecto, Libertad, Comunicación y Análisis. Significado: Es el mundo de las ideas. El 5 busca libertad, el 7 busca sabiduría y el 11 busca visión. En la tríada: Predomina la mente sobre la emoción. Son grandes estrategas y pensadores.<br><br>
+        <b>💧 AGUA (2, 6, 33)</b><br>
+        Emoción, Empatía, Servicio y Sensibilidad. Significado: Es el mundo del sentimiento. Son los sanadores, los que cuidan, los que sienten profundamente. En la tríada: Si predomina el agua, la persona toma decisiones basadas en cómo se siente o cómo hará sentir a los demás. El 33 es el grado máximo de agua (amor universal).
+        </div>
+        """, unsafe_allow_html=True)
         
         st.markdown(f"""
         <div class='luxury-box'>
-            🎁 Tu Regalo Divino es el {regalo}: <br>
-            {REGALOS_DESC.get(regalo, "Un don especial del Universo.")}
+            🎁 <b>Tu Regalo Divino es el {regalo}:</b><br>
+            {REGALOS_DESC.get(regalo, "Este es un talento que el Universo te otorgó al nacer para que nunca camines a oscuras.")}
         </div>
         """, unsafe_allow_html=True)
 
     with t3:
-        st.markdown("<p class='gold-sub'>🌀 Análisis de Elementos</p>", unsafe_allow_html=True)
+        st.markdown("<p class='gold-header'>🌀 DIAGNÓSTICO DE TU TRÍADA</p>", unsafe_allow_html=True)
         if e_alma == e_pers == e_dest:
-            diag = f"Tienes una coherencia total en {e_alma}. Tu alma y tu imagen vibran en la misma frecuencia."
+            diag = f"Tienes una coherencia total. Tu alma, tu imagen y tu misión vibran en la misma frecuencia ({e_alma}), lo que te hace una persona extremadamente clara y directa."
         elif "FUEGO" in conteo and "TIERRA" in conteo:
-            diag = "Tienes la pasión para empezar (Fuego) y la disciplina para terminar (Tierra). Emprendedora nata."
+            diag = "Tienes la pasión para empezar (fuego) y la disciplina para terminar (tierra). Eres una emprendedora nata."
         elif "TIERRA" not in conteo:
-            diag = "Tienes grandes ideas, pero tu reto es aterrizarlas. Necesitas estructura (Tierra)."
+            diag = "Tienes grandes ideas y emociones, pero tu reto es aterrizarlas. Mi sistema Identidad 11:11 te ayudará a crear la estructura que te falta."
         else:
             diag = "Posees una mezcla equilibrada de energías elementales."
             
         st.markdown(f"<div class='luxury-box'>{diag}</div>", unsafe_allow_html=True)
         st.write(f"**Distribución:** Alma ({e_alma}) | Personalidad ({e_pers}) | Destino ({e_dest})")
 
-    st.markdown(f"<p style='text-align: center; color: #D4AF37; margin-top: 50px;'>✨ Mapa para: {nombre_raw.upper()} ✨</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align: center; color: #D4AF37; margin-top: 50px; font-weight: bold;'>✨ Mapa para: {nombre_raw.upper()} ✨</p>", unsafe_allow_html=True)
