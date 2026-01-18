@@ -1,2 +1,2 @@
 # numerologia_profesional
-proyecto pago de numerologia
+proyecto pagado para clienta numerologa ANNAKATTO
