@@ -24,159 +24,129 @@ REGALOS_DESC = {
     5: "El Don de la Versatilidad Tu regalo es la adaptabilidad absoluta. Tienes la bendición de aprender rápido y de sentirte en casa en cualquier lugar del mundo. Eres un imán para las nuevas experiencias y la libertad.",
     6: "El Don de la Armonía Tienes el don del 'toque sanador'. Tu regalo es crear belleza y bienestar a tu alrededor. La gente busca tu consejo porque emanas protección y equilibrio. Eres una sanadora del hogar.",
     7: "El Don de la Sabiduría Tienes acceso directo a la biblioteca del conocimiento universal. Tu regalo es una mente analítica y espiritual. Comprendes los misterios de la vida con una facilidad asombrosa. Eres una guía intelectual.",
-    8: "El Don de la Proyección Tienes el don de la abundancia y el mando. Tu regalo es saber cómo generar recursos y cómo dirigir grandes proyectos. El universo te otorga autoridad natural para manejar el mundo material.",
+    8: "El Don de la Proyección Tienes el don de la abundancia y el mando. Tu regalo es saber cómo generar recursos and cómo dirigir grandes proyectos. El universo te otorga autoridad natural para manejar el mundo material.",
     9: "El Don de la Compasión Tienes el don del amor universal. Tu regalo es una sabiduría que viene de vidas pasadas. Eres capaz de entender y perdonar a todos. Tu presencia eleva la frecuencia de cualquier grupo.",
     11: "El Don del Canal Eres un portal de luz. Tu regalo es la visión profética y la inspiración constante. No necesitas buscar respuestas, las respuestas te llegan a través de señales claras.",
     22: "El Don de la Materialización Tienes el don de 'bajar el cielo a la tierra'. Puedes convertir sueños utópicos en empresas o realidades tangibles para el beneficio de muchos."
 }
 
+# --- 2. LÓGICA DE REDUCCIÓN ---
+def reducir(n):
+    if n in [11, 22, 33]: return n
+    while n > 9 and n not in [11, 22, 33]:
+        n = sum(int(d) for d in str(n))
+    return n
+
 def normalizar(t):
     return ''.join(c for c in unicodedata.normalize('NFD', t.upper()) if unicodedata.category(c) != 'Mn')
 
-def reducir(n, maestro=True):
-    if n == 0: return 0
-    if maestro:
-        while n > 9 and n not in [11, 22, 33]:
-            n = sum(int(d) for d in str(n))
-    else:
-        while n > 9:
-            n = sum(int(d) for d in str(n))
-    return n
-
-def calc_letras(palabra):
-    v_s, c_s = 0, 0
-    for l in palabra:
-        v = MAPA_VALORES.get(l, 0)
-        if l in "AEIOU": v_s += v
-        elif l.isalpha(): c_s += v
-    return v_s, c_s
-
-# --- 2. ESTILOS LUXURY ACTUALIZADOS ---
+# --- 3. ESTILOS LUXURY ---
 st.set_page_config(page_title="Identidad 11:11", layout="wide")
 
 st.markdown("""
     <style>
     .stApp { background-color: #FFFFFF !important; }
+    .titulo-vibracional { color: #D4AF37 !important; font-family: 'serif'; font-size: 70px !important; text-align: center; font-weight: 900; margin-bottom: 0px !important; }
+    .subtitulo-profesional { color: #D4AF37 !important; font-size: 16px !important; text-align: center; letter-spacing: 7px; margin-bottom: 30px !important; }
     
-    .titulo-vibracional {
-        color: #D4AF37 !important;
-        font-family: 'Playfair Display', serif;
-        font-size: 80px !important;
-        text-align: center;
-        font-weight: 900;
-        margin-bottom: 5px !important;
-    }
-    .subtitulo-profesional {
-        color: #D4AF37 !important;
-        font-size: 18px !important;
-        text-align: center;
-        letter-spacing: 7px;
-        margin-bottom: 40px !important;
-    }
-
-    [data-testid="stMetricValue"] { color: #D4AF37 !important; font-size: 3.5rem !important; font-weight: 900 !important; }
-    [data-testid="stMetricLabel"] p { color: #B8860B !important; font-weight: 800 !important; font-size: 1rem !important; }
+    .stTabs [data-baseweb="tab"] { color: #D4AF37 !important; font-weight: bold !important; font-size: 1.1rem; }
+    .stTabs [aria-selected="true"] { border-bottom: 4px solid #D4AF37 !important; color: #B8860B !important; }
     
-    .stTabs [data-baseweb="tab"] { color: #B8860B !important; font-weight: bold !important; font-size: 1.1rem; }
-    .stTabs [aria-selected="true"] { border-bottom: 4px solid #D4AF37 !important; }
-
-    .luxury-box {
-        background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-        padding: 25px;
-        border-radius: 15px;
-        color: #FFFFFF !important;
-        font-weight: 600;
-        font-size: 1.15rem;
-        margin: 20px 0px;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-    }
+    [data-testid="stMetricValue"] { color: #D4AF37 !important; font-weight: 900 !important; font-size: 3.5rem !important; }
+    [data-testid="stMetricLabel"] p { color: #B8860B !important; font-weight: 800 !important; font-size: 0.85rem !important; text-transform: uppercase; }
     
-    .luxury-text-block {
-        color: #2F2F2F;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        background-color: #FAFAFA;
-        padding: 30px;
-        border-radius: 10px;
-        border-left: 5px solid #D4AF37;
-    }
-    
-    .gold-header { color: #B8860B; font-weight: bold; font-size: 1.5rem; margin-top: 25px; border-bottom: 1px solid #D4AF37; }
+    .alerta-maestra { border: 2px solid #D4AF37; border-radius: 8px; color: #B8860B; padding: 10px; margin: 5px; font-weight: bold; text-align: center; background-color: #FFFDF5; }
+    .luxury-box { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); padding: 25px; border-radius: 12px; color: #FFFFFF !important; text-align: center; margin: 10px 0px; }
+    .luxury-text-block { color: #2F2F2F; background-color: #FAFAFA; padding: 30px; border-radius: 10px; border-left: 5px solid #D4AF37; line-height: 1.8; font-size: 1.05rem; }
     </style>
     """, unsafe_allow_html=True)
 
 st.markdown("<p class='titulo-vibracional'>MAPA VIBRACIONAL</p>", unsafe_allow_html=True)
 st.markdown("<p class='subtitulo-profesional'>NUMEROLOGÍA PROFESIONAL</p>", unsafe_allow_html=True)
 
-# --- 3. PANEL LATERAL ---
+# --- 4. PANEL LATERAL ---
 st.sidebar.markdown("### ✨ DATOS DE ENTRADA")
 nombre_raw = st.sidebar.text_input("Nombre Completo:")
-fecha_nac = st.sidebar.date_input("Fecha de Nacimiento:", value=datetime(1981, 7, 25))
-anio_ref = st.sidebar.number_input("Año para Año Personal:", value=2026)
+fecha_nac = st.sidebar.date_input("Fecha de Nacimiento:", value=datetime(1981, 7, 25), min_value=datetime(1900, 1, 1), max_value=datetime(2026, 12, 31))
+anio_ref = st.sidebar.number_input("Año de Consulta:", value=2026)
 
 if nombre_raw:
     nombre = normalizar(nombre_raw)
-    v_t, c_t = 0, 0
-    for p in nombre.split():
-        vs, cs = calc_letras(p)
-        v_t += vs; c_t += cs
-
-    # Cálculos
-    alma = reducir(v_t)
-    pers = reducir(c_t)
-    dest = reducir(alma + pers)
-    mision = reducir(v_t + c_t)
-    d, m, a = fecha_nac.day, fecha_nac.month, fecha_nac.year
-    s_dir = reducir(sum(int(x) for x in (str(d)+str(m)+str(a))))
-    s_grp = reducir(reducir(d) + reducir(m) + reducir(a))
-    num_camino = max(s_dir, s_grp)
-    txt_camino = f"{num_camino}/{reducir(num_camino,False)}" if num_camino in [11,22,33] else str(num_camino)
-    regalo = reducir(sum(int(x) for x in str(a)[-2:]))
-    anio_p = reducir(sum(int(x) for x in (str(d)+str(m)+str(anio_ref))))
-
-    # Triada
-    e_alma = ELEMENTOS.get(alma, "N/A")
-    e_pers = ELEMENTOS.get(pers, "N/A")
-    e_dest = ELEMENTOS.get(dest, "N/A")
-    conteo = [e_alma, e_pers, e_dest]
+    palabras = nombre.split()
+    alertas = []
     
-    t1, t2, t3 = st.tabs(["🔱 MAPEO PRINCIPAL", "📖 SIGNIFICADO DE LOS NÚMEROS", "🌀 TRIADA DE REALIZACIÓN"])
+    mision_pre_suma = 0
+    sum_total_vocales = 0
+    sum_total_consonantes = 0
+    
+    for p in palabras:
+        v_pal = sum(MAPA_VALORES.get(l, 0) for l in p)
+        v_voc = sum(MAPA_VALORES.get(l, 0) for l in p if l in "AEIOU")
+        v_con = sum(MAPA_VALORES.get(l, 0) for l in p if l.isalpha() and l not in "AEIOU")
+        
+        # Misión: Reducir cada palabra respetando números maestros
+        p_reducida = reducir(v_pal)
+        mision_pre_suma += p_reducida
+        
+        if p_reducida in [11, 22, 33]: alertas.append(f"✨ Maestro {p_reducida} en Nombre/Apellido: {p}")
+        if reducir(v_voc) in [11, 22, 33]: alertas.append(f"🕊️ Alma Maestra {reducir(v_voc)} en: {p}")
+        if reducir(v_con) in [11, 22, 33]: alertas.append(f"🎭 Personalidad Maestra {reducir(v_con)} en: {p}")
+        
+        sum_total_vocales += v_voc
+        sum_total_consonantes += v_con
+
+    d, m, a = fecha_nac.day, fecha_nac.month, fecha_nac.year
+    alma = reducir(sum_total_vocales)
+    mision = reducir(mision_pre_suma)
+    pers = reducir(sum_total_consonantes)
+    dest = reducir(alma + pers)
+    camino = reducir(reducir(d) + reducir(m) + reducir(a))
+    regalo = reducir(sum(int(x) for x in str(a)[-2:]))
+    anio_p = reducir(reducir(d) + reducir(m) + reducir(anio_ref))
+
+    t1, t2, t3 = st.tabs(["🔱 MAPEO PRINCIPAL", "📖 SIGNIFICADO DE LOS NÚMEROS", "🌀 TRÍADA DE REALIZACIÓN"])
 
     with t1:
+        if alertas:
+            st.markdown("<p style='color: #B8860B; font-weight: bold; text-align: center;'>⚠️ FRECUENCIAS MAESTRAS DETECTADAS</p>", unsafe_allow_html=True)
+            for msg in alertas:
+                st.markdown(f"<div class='alerta-maestra'>{msg}</div>", unsafe_allow_html=True)
         st.write("---")
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("🏹 MISIÓN DE VIDA", mision)
-        c2.metric("👣 CAMINO DE VIDA", txt_camino)
-        c3.metric("💎 ALMA", alma)
-        c4.metric("🎁 REGALO DIVINO", regalo)
         
-        st.write("<br>", unsafe_allow_html=True)
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("MISIÓN DE VIDA", mision)
+        c2.metric("CAMINO DE VIDA", camino)
+        c3.metric("ALMA", alma)
+        c4.metric("REGALO DIVINO", regalo)
+        
         c5, c6, c7, c8 = st.columns(4)
-        c5.metric("🎭 PERSONALIDAD", pers)
-        c6.metric("🏁 DESTINO", dest)
-        c7.metric("📅 AÑO PERSONAL", anio_p)
-        c8.metric("⚛️ TRIADA DE REALIZACIÓN", f"{len(set(conteo))} Elem.")
+        c5.metric("PERSONALIDAD", pers)
+        c6.metric("DESTINO", dest)
+        c7.metric("AÑO PERSONAL", anio_p)
+        
+        e_alma, e_pers, e_dest = ELEMENTOS.get(alma), ELEMENTOS.get(pers), ELEMENTOS.get(dest)
+        num_elementos = len(set([e_alma, e_pers, e_dest]))
+        c8.metric("TRÍADA DE REALIZACIÓN", num_elementos)
 
     with t2:
-        st.markdown("<p class='gold-header'>🧮 SIGNIFICADO DE LOS NÚMEROS</p>", unsafe_allow_html=True)
         st.markdown(f"""
         <div class='luxury-text-block'>
+        <b>🧮SIGNIFICADO DE LOS NÚMEROS</b><br>
         <b>🟢 Los Números Base (Del 1 al 9) NUMEROLOGÍA</b><br>
-        <b>1 - El Líder / El Iniciador:</b> Es la energía del "Yo Soy". Representa independencia, originalidad y el impulso para comenzar cosas nuevas. En desequilibrio: puede ser autoritario o egoísta.<br>
-        <b>2 - El Mediador / El Diplomático:</b> Es la energía del "Nosotros". Busca la paz, el equilibrio y la cooperación. Es intuitivo y sensible. En desequilibrio: puede ser dependiente o indeciso.<br>
-        <b>3 - El Comunicador / El Artista:</b> Es la energía de la autoexpresión. Representa la alegría, la creatividad, la palabra y la sociabilidad. En desequilibrio: puede ser superficial o disperso.<br>
-        <b>4 - El Constructor / La Estructura:</b> Es la energía del orden. Representa el trabajo duro, la lealtad, la organización y las bases sólidas. En desequilibrio: puede ser rígido o testarudo.<br>
-        <b>5 - El Aventurero / La Libertad:</b> Es la energía del cambio. Representa la curiosidad, el movimiento, los viajes y la adaptabilidad. En desequilibrio: puede ser impaciente o irresponsable.<br>
-        <b>6 - El Protector / El Sanador:</b> Es la energía del amor y la familia. Representa la responsabilidad, la armonía, la belleza y el servicio a los demás. En desequilibrio: puede ser perfeccionista o entrometido.<br>
-        <b>7 - El Sabio / El Analista:</b> Es la energía de la introspección. Busca la verdad, el conocimiento profundo, la espiritualidad y la soledad necesaria. En desequilibrio: puede ser frío o cínico.<br>
-        <b>8 - El Estratega / El Poder:</b> Es la energía de la abundancia material. Representa el éxito, la autoridad, la justicia y la capacidad de manifestar riqueza. En desequilibrio: puede ser ambicioso en exceso o materialista.<br>
-        <b>9 - El Humanista / El Guía:</b> Es la energía del cierre de ciclos. Representa la compasión universal, el idealismo y la entrega desinteresada. En desequilibrio: puede ser dramático o vivir en el pasado.<br><br>
-        
+        1 - El Líder / El Iniciador: Es la energía del "Yo Soy". Representa independencia, originalidad y el impulso para comenzar cosas nuevas. En desequilibrio: puede ser autoritario o egoísta.<br>
+        2 - El Mediador / El Diplomático: Es la energía del "Nosotros". Busca la paz, el equilibrio y la cooperación. Es intuitivo y sensible. En desequilibrio: puede ser dependiente o indeciso.<br>
+        3 - El Comunicador / El Artista: Es la energía de la autoexpresión. Representa la alegría, la creatividad, la palabra y la sociabilidad. En desequilibrio: puede ser superficial o disperso.<br>
+        4 - El Constructor / La Estructura: Es la energía del orden. Representa el trabajo duro, la lealtad, la organización y las bases sólidas. En desequilibrio: puede ser rígido o testarudo.<br>
+        5 - El Aventurero / La Libertad: Es la energía del cambio. Representa la curiosidad, el movimiento, los viajes y la adaptabilidad. En desequilibrio: puede ser impaciente o irresponsable.<br>
+        6 - El Protector / El Sanador: Es la energía del amor y la familia. Representa la responsabilidad, la armonía, la belleza y el servicio a los demás. En desequilibrio: puede ser perfeccionista o entrometido.<br>
+        7 - El Sabio / El Analista: Es la energía de la introspección. Busca la verdad, el conocimiento profundo, la espiritualidad y la soledad necesaria. En desequilibrio: puede ser frío o cínico.<br>
+        8 - El Estratega / El Poder: Es la energía de la abundancia material. Representa el éxito, la autoridad, la justicia y la capacidad de manifestar riqueza. En desequilibrio: puede ser ambicioso en exceso o materialista.<br>
+        9 - El Humanista / El Guía: Es la energía del cierre de ciclos. Representa la compasión universal, el idealismo y la entrega desinteresada. En desequilibrio: puede ser dramático o vivir en el pasado.<br>
         <b>✨ Los Números Maestros (No se reducen)</b><br>
-        <b>11 - El Mensajero / El Visionario:</b> (Tu número y el de tu marca). Es un canal de luz. Tiene una intuición aguda y su misión es inspirar y elevar la consciencia de los demás. Es el "Puente" entre mundos.<br>
-        <b>22 - El Arquitecto Maestro:</b> (Tu día de nacimiento). Es el número más poderoso. Tiene la visión del 11 pero la capacidad práctica del 4. Puede construir proyectos gigantescos que beneficien a la humanidad.<br>
-        <b>33 - El Guía Espiritual:</b> Es la vibración del "Amor Incondicional". Su misión es la sanación a gran escala y la enseñanza a través del ejemplo de sacrificio y servicio puro.<br><br>
-        
+        11 - El Mensajero / El Visionario: (Tu número y el de tu marca). Es un canal de luz. Tiene una intuición aguda y su misión es inspirar y elevar la consciencia de los demás. Es el "Puente" entre mundos.<br>
+        22 - El Arquitecto Maestro: (Tu día de nacimiento). Es el número más poderoso. Tiene la visión del 11 pero la capacidad práctica del 4. Puede construir proyectos gigantescos que beneficien a la humanidad.<br>
+        33 - El Guía Espiritual: Es la vibración del "Amor Incondicional". Su misión es la sanación a gran escala y la enseñanza a través del ejemplo de sacrificio y servicio puro.<br><br>
+
         <b>🕊️ Guía Espiritual y Angelical de los Números</b><br>
         <b>1 - El Rayo de la Creación</b><br>
         Espiritual: Representa la unidad con la Fuente. Es el "Yo Soy" manifestado. Simboliza que tus pensamientos son semillas de realidad.<br>
@@ -205,7 +175,7 @@ if nombre_raw:
         <b>9 - La Consciencia Crística</b><br>
         Espiritual: Representa el amor universal y la culminación del viaje del alma. Es el número del "Trabajador de la Luz".<br>
         Angelical: "Es hora de ponerte a trabajar en tu misión de vida sin demora. El mundo necesita tu luz. Cierra ciclos para empezar tu labor sagrada".<br><br>
-        
+
         <b>✨ Los Números Maestros (Frecuencias Angélicas Superiores)</b><br>
         <b>11 - El Portal de Luz (Tu Marca)</b><br>
         Espiritual: Es el portal de la iluminación. Representa a los "Mensajeros de la Nueva Era". Es la conexión directa con la sabiduría del alma.<br>
@@ -215,29 +185,55 @@ if nombre_raw:
         Angelical: "Mantén la visión a largo plazo. Tienes la protección divina para construir algo grande que servirá a muchas personas. Actúa con disciplina".<br>
         <b>33 - El Avatar del Amor</b><br>
         Espiritual: Es la frecuencia de la compasión absoluta. Representa la energía del Maestro que enseña a través del amor puro.<br>
-        Angelical: "Tu vibración está elevando la de quienes te rodean. Tu presencia es una bendición. Enfócate en sanar a través de tu bondad".<br><br>
-        
+        Angelical: "Tu vibración está elevando la de quienes te rodean. Tu presencia es una blessing. Enfócate en sanar a través de tu bondad".<br><br>
+
+        <b>🎁 Significado del Regalo Divino (Dones de Nacimiento)</b><br>
+        Regalo 1: {REGALOS_DESC.get(1)}<br>
+        Regalo 2: {REGALOS_DESC.get(2)}<br>
+        Regalo 3: {REGALOS_DESC.get(3)}<br>
+        Regalo 4: {REGALOS_DESC.get(4)}<br>
+        Regalo 5: {REGALOS_DESC.get(5)}<br>
+        Regalo 6: {REGALOS_DESC.get(6)}<br>
+        Regalo 7: {REGALOS_DESC.get(7)}<br>
+        Regalo 8: {REGALOS_DESC.get(8)}<br>
+        Regalo 9: {REGALOS_DESC.get(9)}<br>
+        <b>✨ Regalos Maestros (Si los dos últimos dígitos son 11 o 22)</b><br>
+        Nota: Es raro, pero ocurre (ej. alguien nacido en 1911 o 2011).<br>
+        Regalo 11: {REGALOS_DESC.get(11)}<br>
+        Regalo 22: {REGALOS_DESC.get(22)}<br><br>
+
         <b>ELEMENTOS</b><br>
         <b>🔥 FUEGO (1, 3, 9)</b><br>
-        Fuerza, Acción, Intuición y Pasión. Significado: Son personas que inician, que brillan y que tienen mucha energía vital. En la tríada: Si alguien tiene muchos números de fuego, es una persona que difícilmente se queda quieta; necesita crear y liderar.<br><br>
+        Fuerza, Acción, Intuición y Pasión.<br>
+        Significado: Son personas que inician, que brillan y que tienen mucha energía vital.<br>
+        En la tríada: Si alguien tiene muchos números de fuego, es una persona que difícilmente se queda quieta; necesita crear y liderar.<br><br>
         <b>🌱 TIERRA (4, 8, 22)</b><br>
-        Estructura, Orden, Manifestación y Realidad. Significado: Es la capacidad de concretar. Son personas realistas, ambiciosas en el buen sentido y muy trabajadoras. En la tríada: Si predomina la tierra, la persona es el "ancla" de su familia o empresa. El 22 es el grado más alto de tierra (el constructor maestro).<br><br>
+        Estructura, Orden, Manifestación y Realidad.<br>
+        Significado: Es la capacidad de concretar. Son personas realistas, ambiciosas en el buen sentido y muy trabajadoras.<br>
+        En la tríada: Si predomina la tierra, la persona es el "ancla" de su familia o empresa. El 22 es el grado más alto de tierra (el constructor maestro).<br><br>
         <b>💨 AIRE (5, 7, 11)</b><br>
-        Intelecto, Libertad, Comunicación y Análisis. Significado: Es el mundo de las ideas. El 5 busca libertad, el 7 busca sabiduría y el 11 busca visión. En la tríada: Predomina la mente sobre la emoción. Son grandes estrategas y pensadores.<br><br>
+        Intelecto, Libertad, Comunicación y Análisis.<br>
+        Significado: Es el mundo de las ideas. El 5 busca libertad, el 7 busca sabiduría y el 11 busca visión.<br>
+        En la tríada: Predomina la mente sobre la emoción. Son grandes estrategas y pensadores.<br><br>
         <b>💧 AGUA (2, 6, 33)</b><br>
-        Emoción, Empatía, Servicio y Sensibilidad. Significado: Es el mundo del sentimiento. Son los sanadores, los que cuidan, los que sienten profundamente. En la tríada: Si predomina el agua, la persona toma decisiones basadas en cómo se siente o cómo hará sentir a los demás. El 33 es el grado máximo de agua (amor universal).
-        </div>
-        """, unsafe_allow_html=True)
-        
-        st.markdown(f"""
-        <div class='luxury-box'>
-            🎁 <b>Tu Regalo Divino es el {regalo}:</b><br>
-            {REGALOS_DESC.get(regalo, "Este es un talento que el Universo te otorgó al nacer para que nunca camines a oscuras.")}
+        Emoción, Empatía, Servicio y Sensibilidad.<br>
+        Significado: Es el mundo del sentimiento. Son los sanadores, los que cuidan, los que sienten profundamente.<br>
+        En la tríada: Si predomina el agua, la persona toma decisiones basadas en cómo se siente o cómo hará sentir a los demás. El 33 es el grado máximo de agua (amor universal).
         </div>
         """, unsafe_allow_html=True)
 
     with t3:
-        st.markdown("<p class='gold-header'>🌀 DIAGNÓSTICO DE TU TRÍADA</p>", unsafe_allow_html=True)
+        st.markdown("<p style='color: #B8860B; font-weight: bold; font-size: 1.4rem;'>🌀 DIAGNÓSTICO DE TU TRÍADA</p>", unsafe_allow_html=True)
+        st.markdown(f"""
+        <div style='background-color: #FFFDF5; padding: 15px; border-radius: 10px; border: 1px solid #D4AF37; margin-bottom: 20px; color: #B8860B;'>
+        <b>Composición de tu Tríada:</b><br>
+        💎 ALMA: {alma} ({e_alma})<br>
+        🎭 PERSONALIDAD: {pers} ({e_pers})<br>
+        🏁 DESTINO: {dest} ({e_dest})
+        </div>
+        """, unsafe_allow_html=True)
+
+        conteo = [e_alma, e_pers, e_dest]
         if e_alma == e_pers == e_dest:
             diag = f"Tienes una coherencia total. Tu alma, tu imagen y tu misión vibran en la misma frecuencia ({e_alma}), lo que te hace una persona extremadamente clara y directa."
         elif "FUEGO" in conteo and "TIERRA" in conteo:
@@ -245,9 +241,7 @@ if nombre_raw:
         elif "TIERRA" not in conteo:
             diag = "Tienes grandes ideas y emociones, pero tu reto es aterrizarlas. Mi sistema Identidad 11:11 te ayudará a crear la estructura que te falta."
         else:
-            diag = "Posees una mezcla equilibrada de energías elementales."
-            
+            diag = "Posees una mezcla equilibrada de energías elementales para tu desarrollo."
         st.markdown(f"<div class='luxury-box'>{diag}</div>", unsafe_allow_html=True)
-        st.write(f"**Distribución:** Alma ({e_alma}) | Personalidad ({e_pers}) | Destino ({e_dest})")
 
-    st.markdown(f"<p style='text-align: center; color: #D4AF37; margin-top: 50px; font-weight: bold;'>✨ Mapa para: {nombre_raw.upper()} ✨</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align: center; color: #D4AF37; margin-top: 50px;'>✨ Identidad 11:11 - {nombre_raw.upper()} ✨</p>", unsafe_allow_html=True)
