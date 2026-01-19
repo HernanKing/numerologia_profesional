@@ -58,6 +58,11 @@ st.markdown("""
     .alerta-maestra { border: 2px solid #D4AF37; border-radius: 8px; color: #B8860B; padding: 10px; margin: 5px; font-weight: bold; text-align: center; background-color: #FFFDF5; }
     .luxury-box { background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%); padding: 25px; border-radius: 12px; color: #FFFFFF !important; text-align: center; margin: 10px 0px; }
     .luxury-text-block { color: #2F2F2F; background-color: #FAFAFA; padding: 30px; border-radius: 10px; border-left: 5px solid #D4AF37; line-height: 1.8; font-size: 1.05rem; }
+    
+    /* Estilos específicos para la Misión Sagrada */
+    .mision-container { border: 2px solid #D4AF37; padding: 30px; border-radius: 15px; background-color: #FFFFFF; }
+    .mision-header { color: #D4AF37; font-size: 2rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #D4AF37; padding-bottom: 10px; }
+    .param-box { background-color: #D4AF37; color: white; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; }
     </style>
     """, unsafe_allow_html=True)
 
@@ -84,7 +89,6 @@ if nombre_raw:
         v_voc = sum(MAPA_VALORES.get(l, 0) for l in p if l in "AEIOU")
         v_con = sum(MAPA_VALORES.get(l, 0) for l in p if l.isalpha() and l not in "AEIOU")
         
-        # Misión: Reducir cada palabra respetando números maestros
         p_reducida = reducir(v_pal)
         mision_pre_suma += p_reducida
         
@@ -104,7 +108,7 @@ if nombre_raw:
     regalo = reducir(sum(int(x) for x in str(a)[-2:]))
     anio_p = reducir(reducir(d) + reducir(m) + reducir(anio_ref))
 
-    t1, t2, t3 = st.tabs(["🔱 MAPEO PRINCIPAL", "📖 SIGNIFICADO DE LOS NÚMEROS", "🌀 TRÍADA DE REALIZACIÓN"])
+    t1, t2, t3, t4 = st.tabs(["🔱 MAPEO PRINCIPAL", "📖 SIGNIFICADO DE LOS NÚMEROS", "🌀 TRÍADA DE REALIZACIÓN", "✨ MISIÓN SAGRADA IDENTIDAD 11:11"])
 
     with t1:
         if alertas:
@@ -243,5 +247,116 @@ if nombre_raw:
         else:
             diag = "Posees una mezcla equilibrada de energías elementales para tu desarrollo."
         st.markdown(f"<div class='luxury-box'>{diag}</div>", unsafe_allow_html=True)
+
+    with t4:
+        # 1. LÓGICA DE CLASIFICACIÓN (DETERMINACIÓN DE EJE Y ENFOQUE)
+        eje_titulo, mision_txt, enfoque, frase, advertencia, consejo = "", "", "", "", "", ""
+        elem_camino = ELEMENTOS.get(camino)
+        
+        # Clasificar Camino de Vida por grupos de la petición
+        if camino in [11, 22, 33]: grupo_camino = "MAESTRO"
+        elif elem_camino in ["FUEGO", "AIRE"]: grupo_camino = "FA"
+        else: grupo_camino = "TA"
+
+        if dest == 11:
+            eje_titulo = "🔱 Eje 1: El Canal Visionario (DESTINO 11)"
+            mision_txt = "Inspirar, canalizar ideas elevadas y despertar consciencias."
+            if grupo_camino == "FA":
+                enfoque = "Comunicación masiva, conferencias disruptivas, liderazgo de opinión digital o innovación tecnológica con propósito."
+                frase = "'Uso mi magnetismo y mi mente aguda para encender la chispa del despertar en las masas.'"
+                advertencia = "Cuidado con el mesianismo o la dispersión mental. Puedes querer salvar al mundo y olvidar pagar tus facturas."
+                consejo = "Busca un socio de 'Tierra' que aterrice tus visiones. Tu valor es la idea, no la logística."
+            elif grupo_camino == "TA":
+                enfoque = "Arquitectura sagrada, centros de sanación física, diseño de marcas de bienestar de lujo o psicología transpersonal aplicada."
+                frase = "'Bajo la luz del espíritu a la materia, creando refugios que sanan y armonizan el mundo físico.'"
+                advertencia = "La hipersensibilidad. El ruido del mundo físico puede agotarte y hacer que te encierres."
+                consejo = "Crea un entorno de trabajo silencioso y estético. Tu productividad depende de tu paz emocional."
+            else: # MAESTRO
+                enfoque = "Guía de guías, autor de textos sagrados modernos, consultoría de alta intuición para líderes o escuelas de misterio."
+                frase = "'Soy el puente puro entre dimensiones; mi palabra es el mapa que guía a las almas hacia su verdad.'"
+                advertencia = "La soberbia espiritual o el aislamiento. Sentir que 'nadie te entiende'."
+                consejo = "Simplifica tu mensaje. Para guiar a otros, debes hablar el lenguaje de los hombres, no solo el de los ángeles."
+
+        elif dest in [1, 5, 8]:
+            eje_titulo = "🚀 Eje 2: Expansión y Poder (DESTINO 1, 5, 8)"
+            mision_txt = "Liderar, innovar y manifestar abundancia material."
+            if grupo_camino == "FA":
+                enfoque = "Startups tecnológicas, agencias de marketing de alto impacto, inversiones de riesgo o marcas personales de alto perfil."
+                frase = "'Nací para abrir caminos donde otros ven muros, capitalizando la innovación con valentía y rapidez.'"
+                advertencia = "La tiranía o el agotamiento (burnout). Querer resultados para ayer."
+                consejo = "Aprende a delegar. Tu negocio crecerá cuando dejes de ser el cuello de botella de todas las decisiones."
+            elif grupo_camino == "TA":
+                enfoque = "Franquicias de lujo, bienes raíces premium, gerencia de empresas con propósito social o banca ética."
+                frase = "'Construyo imperios con bases inquebrantables, uniendo la ambición con la lealtad y el orden.'"
+                advertencia = "La rigidez o el miedo a perder lo construido. El exceso de control asfixia la innovación."
+                consejo = "Invierte en tecnología y automatización. Tu estructura es fuerte, ahora dale velocidad."
+            else: # MAESTRO
+                enfoque = "Estrategia corporativa global, fundaciones de gran escala, educación financiera espiritual o diplomacia económica."
+                frase = "'Dirijo el flujo de la riqueza mundial hacia propósitos elevados, manifestando abundancia con visión universal.'"
+                advertencia = "El uso del poder para beneficio puramente egoísta, lo que genera una caída rápida."
+                consejo = "Mantén una causa social vinculada a tus ingresos. Tu riqueza está protegida cuando compartes el éxito."
+
+        elif dest in [2, 6, 9, 33]:
+            eje_titulo = "🕊️ Eje 3: Servicio y Sanación (DESTINO 2, 6, 9, 33)"
+            mision_txt = "Equilibrar, proteger, educar y sanar."
+            if grupo_camino == "FA":
+                enfoque = "Coaching motivacional masivo, marcas de alimentación saludable funcional, activismo social mediático o moda ética."
+                frase = "'Uso mi fuerza y mi intelecto para proteger a la humanidad y abrir espacios de justicia y bienestar.'"
+                advertencia = "El sacrificio excesivo. Dar tanto a los demás que te quedas vacío o resentido."
+                consejo = "Pon límites claros. El servicio es tu misión, pero el negocio debe ser rentable para seguir sirviendo."
+            elif grupo_camino == "TA":
+                enfoque = "Interiorismo gourmet, repostería de autor, educación familiar, centros de estética orgánica o cuidado infantil de lujo."
+                frase = "'Mi éxito es la paz que genero en mi entorno; mi don de cuidar es mi fuente infinita de riqueza.'"
+                advertencia = "La codependencia o el miedo al conflicto. Evitar decisiones difíciles por no herir sentimientos."
+                consejo = "No personalices las críticas. Tu emprendimiento es una extensión de tu amor, pero requiere disciplina profesional."
+            else: # MAESTRO
+                enfoque = "Mentoría espiritual para élites, centros de retiro exclusivos, medicina integrativa o arte sanador universal."
+                frase = "'Soy el bálsamo de amor y sabiduría para las almas; enseño a través de la presencia consciente y la compasión.'"
+                advertencia = "Cargar con el dolor del mundo. La angustia existencial por los problemas ajenos."
+                consejo = "Practica el desapego. Guía a las personas hacia su propia fuerza en lugar de intentar salvarlas tú mismo."
+
+        else: # DESTINO 3, 4, 7, 22
+            eje_titulo = "🏗️ Eje 4: Estructura y Manifestación (DESTINO 3, 4, 7, 22)"
+            mision_txt = "Construir, analizar, comunicar técnicamente y dejar legado."
+            if grupo_camino == "FA":
+                enfoque = "Publicidad creativa técnica, joyería industrial de vanguardia, ingeniería en telecomunicaciones o producción audiovisual."
+                frase = "'Transformo la chispa de una idea audaz en una realidad técnica que el mundo admira por su precisión.'"
+                advertencia = "El perfeccionismo paralizante. No lanzar un proyecto porque 'aún no es perfecto'."
+                consejo = "Aplica la ley del 80/20. Lo que para ti es un 80%, para el mundo ya es excelente. ¡Lánzalo!."
+            elif grupo_camino == "TA":
+                enfoque = "Ebanistería de lujo, restauración de arte, contabilidad estratégica, logística global o marroquinería artesanal."
+                frase = "'La perfección de mi ejecución es mi firma divina; mi orden construye la estabilidad de mi legado.'"
+                advertencia = "El estancamiento en la zona de confort. Hacer las cosas 'como siempre se han hecho'."
+                consejo = "Actualiza tus herramientas de trabajo. Tu maestría es innegable, pero necesitas herramientas modernas para escalar."
+            else: # MAESTRO
+                enfoque = "Ciberseguridad, desarrollo de software avanzado, investigación científica privada o auditoría de sistemas místico-técnicos."
+                frase = "'Ordeno el conocimiento profundo para revelar la verdad, construyendo las estructuras intelectuales del futuro.'"
+                advertencia = "El escepticismo o la frialdad mental. Perder el contacto con la magia de la vida por exceso de análisis."
+                consejo = "Incluye siempre el factor humano en tus sistemas. La tecnología más fría necesita un corazón que la dirija."
+
+        # 2. RENDERIZADO CON COLORES LUXURY CORREGIDOS
+        st.markdown(f"""
+        <div class='mision-container'>
+            <div class='mision-header'>{eje_titulo}</div>
+            <div class='luxury-text-block' style='background-color: white; border: none;'>
+                <span style='color: #D4AF37; font-weight: bold;'>MISIÓN:</span> {mision_txt}<br><br>
+                <span style='color: #D4AF37; font-weight: bold;'>ENFOQUE:</span> {enfoque}<br><br>
+                <div style='background-color: #D4AF37; color: white; padding: 15px; border-radius: 8px; font-style: italic; text-align: center; margin: 15px 0;'>
+                    FRASE DE PODER: {frase}
+                </div>
+                <span style='color: #8B0000; font-weight: bold;'>⚠️ ADVERTENCIA DE SOMBRA:</span> {advertencia}<br><br>
+                <div style='border: 1px dashed #D4AF37; padding: 15px; border-radius: 8px; background-color: #FFFDF5;'>
+                    <span style='color: #D4AF37; font-weight: bold;'>💡 CONSEJO DE EMPRENDIMIENTO:</span> {consejo}
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.write("")
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.markdown(f"<div class='param-box'>DESTINO: {dest} (Determina tu Eje)</div>", unsafe_allow_html=True)
+        with col_b:
+            st.markdown(f"<div class='param-box'>CAMINO DE VIDA: {camino} ({elem_camino})</div>", unsafe_allow_html=True)
 
     st.markdown(f"<p style='text-align: center; color: #D4AF37; margin-top: 50px;'>✨ Identidad 11:11 - {nombre_raw.upper()} ✨</p>", unsafe_allow_html=True)
