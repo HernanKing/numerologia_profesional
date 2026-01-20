@@ -16,15 +16,24 @@ ELEMENTOS = {
     2: "AGUA", 6: "AGUA", 33: "AGUA"
 }
 
-ARCHETYPES = {
-    1: "La Iniciadora", 2: "La Tejedora", 3: "La Expresora",
-    4: "La Arquitecta", 5: "La Exploradora", 6: "La Guardiana",
-    7: "La Sabia", 8: "La Gestora", 9: "La Integradora",
+# --- NUEVA DATA DE ROLES (Agregada sin borrar nada) ---
+INFO_ARQUETIPOS = {
+    1: {"rol": "La Iniciadora", "fun": "Abrir, liderar, iniciar", "luz": "valentía, autonomía, acción", "som": "ego, soledad, impulsividad", "nec": "afirmarse sin aislarse", "per": "decidida"},
+    2: {"rol": "La Tejedora", "fun": "unir, cooperar, armonizar", "luz": "sensibilidad, empatía, diplomacia", "som": "dependencia, indecisión", "nec": "validarse sin disolverse", "per": "sensible"},
+    3: {"rol": "La Expresora", "fun": "expresar, inspirar, alegrar", "luz": "creatividad, carisma, palabra", "som": "dispersión, superficialidad", "nec": "enfocarse sin apagarse", "per": "optimista"},
+    4: {"rol": "La Arquitecta", "fun": "ordenar, estructurar, sostener", "luz": "disciplina, coherencia, constancia", "som": "rigidez, control", "nec": "fluir sin perder orden", "per": "confiable"},
+    5: {"rol": "La Exploradora", "fun": "mover, transformar, liberar", "luz": "adaptabilidad, libertad, expansión", "som": "inestabilidad, huida", "nec": "libertad con dirección", "per": "versátil"},
+    6: {"rol": "La Guardiana", "fun": "sanar, acompañar, nutrir", "luz": "amor, responsabilidad, belleza", "som": "sobrecarga, sacrificio", "nec": "cuidar sin olvidarse", "per": "equilibrada"},
+    7: {"rol": "La Sabia", "fun": "comprender, investigar, revelar", "luz": "intuición, análisis, misticismo", "som": "aislamiento, exceso mental", "nec": "compartir sin exponerse de más", "per": "intelectual"},
+    8: {"rol": "La Gestora", "fun": "dirigir, administrar, manifestar", "luz": "poder, abundancia, visión estratégica", "som": "control, ambición vacía", "nec": "poder con ética", "per": "autoridad natural"},
+    9: {"rol": "La Integradora", "fun": "cerrar ciclos, servir al colectivo", "luz": "compasión, humanidad, visión global", "som": "victimismo, agotamiento", "nec": "servir sin sacrificarse", "per": "sabia"},
+    11: {"rol": "El Canal Visionario", "fun": "traducir lo invisible en guía", "luz": "intuición elevada, inspiración", "som": "ansiedad, mesianismo", "nec": "anclaje y coherencia", "per": "un canal de luz"},
+    22: {"rol": "La Arquitecta Maestra", "fun": "materializar visiones colectivas", "luz": "liderazgo consciente, impacto real", "som": "sobrecarga, miedo al fracaso", "nec": "delegar y confiar", "per": "maestra"},
+    33: {"rol": "La Maestra Compasiva", "fun": "elevar desde el amor", "luz": "servicio consciente, enseñanza", "som": "autoabandono", "nec": "incluirse en el cuidado", "per": "guía espiritual"}
 }
 
-MASTER_DESTINIES = {
-    11: "Visionaria", 22: "Maestra", 33: "Compasiva"
-}
+ARCHETYPES = {k: v["rol"] for k, v in INFO_ARQUETIPOS.items() if k <= 9}
+MASTER_DESTINIES = {11: "Visionaria", 22: "Maestra", 33: "Compasiva"}
 
 REGALOS_DESC = {
     1: "El Don de la Iniciativa Tienes una chispa divina para empezar de cero. Tu regalo es la valentía y la originalidad. Nunca te faltarán ideas nuevas ni la fuerza para ser la primera en algo. Eres una líder nata por derecho divino.",
@@ -33,7 +42,7 @@ REGALOS_DESC = {
     4: "El Don de la Disciplina Tienes el don de la manifestación técnica. Tu regalo es la capacidad de dar forma a lo invisible. Eres confiable, organizada y capaz de construir estructuras que duran para siempre.",
     5: "El Don de la Versatilidad Tu regalo es la adaptabilidad absoluta. Tienes la bendición de aprender rápido y de sentirte en casa en cualquier lugar del mundo. Eres un imán para las nuevas experiencias y la libertad.",
     6: "El Don de la Armonía Tienes el don del 'toque sanador'. Tu regalo es crear belleza y bienestar a tu alrededor. La gente busca tu consejo porque emanas protección y equilibrio. Eres una sanadora del hogar.",
-    7: "El Don de la Sabiduría Tienes acceso directo a la biblioteca del conocimiento universal. Tu regalo es una mente analítica y espiritual. Comprendes los misterios de la vida con una facilidad asombrosa. Eres una guía intelectual.",
+    7: "El Don de la Sabiduría Tienes acceso directo a la biblioteca del conocimiento universal. Tu regalo es una mente analítica y espiritual. Comprendes los mysteries de la vida con una facilidad asombrosa. Eres una guía intelectual.",
     8: "El Don de la Proyección Tienes el don de la abundancia y el mando. Tu regalo es saber cómo generar recursos and cómo dirigir grandes proyectos. El universo te otorga autoridad natural para manejar el mundo material.",
     9: "El Don de la Compasión Tienes el don del amor universal. Tu regalo es una sabiduría que viene de vidas pasadas. Eres capaz de entender y perdonar a todos. Tu presencia eleva la frecuencia de cualquier grupo.",
     11: "El Don del Canal Eres un portal de luz. Tu regalo es la visión profética y la inspiración constante. No necesitas buscar respuestas, las respuestas te llegan a través de señales claras.",
@@ -51,12 +60,12 @@ def normalizar(t):
     return ''.join(c for c in unicodedata.normalize('NFD', t.upper()) if unicodedata.category(c) != 'Mn')
 
 def generate_identity(alma, destino):
-    alma_role = ARCHETYPES.get(alma, "Esencia")
+    alma_role = INFO_ARQUETIPOS.get(alma, {}).get("rol", "Esencia")
     if destino in MASTER_DESTINIES:
         destiny_role = MASTER_DESTINIES[destino]
         return f"{alma_role} {destiny_role}"
     else:
-        destiny_role = ARCHETYPES.get(destino, "Manifestación").replace("La ", "")
+        destiny_role = INFO_ARQUETIPOS.get(destino, {}).get("rol", "Manifestación").replace("La ", "")
         return f"{alma_role} {destiny_role}"
 
 # --- 3. ESTILOS LUXURY ---
@@ -257,19 +266,32 @@ if nombre_raw:
         st.markdown(f"<div class='mision-container'><div class='mision-header'>{eje_titulo}</div><div class='luxury-text-block' style='background:white; border:none;'><span style='color:#D4AF37; font-weight:bold;'>MISIÓN:</span> {mision_txt}<br><br><span style='color:#D4AF37; font-weight:bold;'>ENFOQUE:</span> {enfoque}<br><br><div style='background:#D4AF37; color:white; padding:15px; border-radius:8px; font-style:italic; text-align:center;'>FRASE: {frase}</div><br><span style='color:#8B0000; font-weight:bold;'>⚠️ SOMBRA:</span> {advertencia}<br><br><div style='border:1px dashed #D4AF37; padding:15px; border-radius:8px; background:#FFFDF5;'><span style='color:#D4AF37; font-weight:bold;'>💡 CONSEJO:</span> {consejo}</div></div></div>", unsafe_allow_html=True)
 
     with t5:
+        # 1. Extraemos la data
+        inf_a = INFO_ARQUETIPOS.get(alma, {})
+        inf_p = INFO_ARQUETIPOS.get(pers, {})
+        inf_d = INFO_ARQUETIPOS.get(dest, {})
+        
+        # 2. Generamos la identidad (ahora en su propia línea)
         identidad_final = generate_identity(alma, dest).upper()
-        st.markdown(f"""
-            <div style="text-align: center; padding: 50px; border: 3px double #D4AF37; border-radius: 20px; background-color: #FFFFFF; margin-top: 20px;">
-                <p style="color: #B8860B; letter-spacing: 7px; font-size: 14px; font-weight: bold; margin-bottom: 20px;">IDENTIDAD 11:11 DETECTADA</p>
-                <h1 style="color: #D4AF37; font-family: 'serif'; font-size: 50px; font-weight: 900; margin-bottom: 10px; line-height: 1.2;">{identidad_final}</h1>
-                <div style="width: 150px; height: 2px; background-color: #D4AF37; margin: 0 auto 30px auto;"></div>
-                <p style="color: #2F2F2F; font-size: 20px; font-style: italic; max-width: 700px; margin: 0 auto; line-height: 1.8;">"Cuando alineas tu estructura interna con tu misión, <br> la materia comienza a ordenarse."</p>
-                <div style="margin-top: 50px; display: flex; justify-content: center; gap: 60px;">
-                    <div style="text-align: center;"><p style="color: #B8860B; font-size: 13px; font-weight: bold; text-transform: uppercase;">Esencia (Alma)</p><p style="color: #2F2F2F; font-size: 18px;">{ARCHETYPES.get(alma)}</p></div>
-                    <div style="text-align: center;"><p style="color: #B8860B; font-size: 13px; font-weight: bold; text-transform: uppercase;">Manifestación (Destino)</p><p style="color: #2F2F2F; font-size: 18px;">{MASTER_DESTINIES.get(dest) if dest in MASTER_DESTINIES else ARCHETYPES.get(dest).replace('La ', '')}</p></div>
-                </div>
-                <div style="margin-top: 60px; border-top: 1px solid #EEE; padding-top: 20px;"><p style="color: #B8860B; font-weight: bold; font-size: 15px; letter-spacing: 3px;">DESIGNACIÓN OFICIAL</p><p style="color: #555; font-size: 14px;">Frecuencia maestra unificada para la manifestación consciente.</p></div>
-            </div>
-        """, unsafe_allow_html=True)
 
-    st.markdown(f"<p style='text-align: center; color: #D4AF37; margin-top: 50px;'>✨ Identidad 11:11 - {nombre_raw.upper()} ✨</p>", unsafe_allow_html=True)
+        # 3. El markdown pegado al borde izquierdo para evitar el fondo negro
+        st.markdown(f"""
+        <div style="text-align: center; padding: 50px; border: 3px double #D4AF37; border-radius: 20px; background-color: #FFFFFF; margin-top: 20px;">
+        <p style="color: #B8860B; letter-spacing: 7px; font-size: 14px; font-weight: bold; margin-bottom: 20px;">IDENTIDAD 11:11 DETECTADA</p>
+        <h1 style="color: #D4AF37; font-family: 'serif'; font-size: 50px; font-weight: 900; margin-bottom: 10px; line-height: 1.2;">{identidad_final}</h1>
+        <div style="width: 150px; height: 2px; background-color: #D4AF37; margin: 0 auto 30px auto;"></div>
+    
+        <div style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.8; color: #2F2F2F; font-size: 1.1rem;">
+        <p><b>✨ Esencia del Alma:</b> “Tu alma encarna el rol de <b>{inf_a.get('rol')}</b>, lo que significa que necesitas <b>{inf_a.get('nec')}</b> para sentirte en equilibrio.”</p>
+        <p><b>🎭 Proyección al mundo:</b> “A nivel externo, proyectas la energía de <b>{inf_p.get('rol')}</b>, por lo que las personas suelen percibirte como alguien <b>{inf_p.get('per')}</b>.”</p>
+        <p><b>🔱 Misión evolutiva:</b> “Tu destino te llama a encarnar el rol de <b>{inf_d.get('rol')}</b>, guiándote a <b>{inf_d.get('fun')}</b>.”</p>
+        <p><b>☯️ Luz y Sombra:</b> Al caminar hacia tu destino, tu mayor fortaleza es la <b>{inf_d.get('luz')}</b>, pero debes estar atenta a la sombra de <b>{inf_d.get('som')}</b>.</p>
+        </div>
+
+        <div style="margin-top: 50px; display: flex; justify-content: center; gap: 60px;">
+        <div style="text-align: center;"><p style="color: #B8860B; font-size: 13px; font-weight: bold; text-transform: uppercase;">Esencia (Alma)</p><p style="color: #2F2F2F; font-size: 18px;">{inf_a.get('rol')}</p></div>
+        <div style="text-align: center;"><p style="color: #B8860B; font-size: 13px; font-weight: bold; text-transform: uppercase;">Manifestación (Destino)</p><p style="color: #2F2F2F; font-size: 18px;">{inf_d.get('rol')}</p></div>
+        </div>
+        <div style="margin-top: 60px; border-top: 1px solid #EEE; padding-top: 20px;"><p style="color: #B8860B; font-weight: bold; font-size: 15px; letter-spacing: 3px;">DESIGNACIÓN OFICIAL</p><p style="color: #555; font-size: 14px;">Frecuencia maestra unificada para la manifestación consciente.</p></div>
+        </div>
+        """, unsafe_allow_html=True)
