@@ -16,24 +16,23 @@ ELEMENTOS = {
     2: "AGUA", 6: "AGUA", 33: "AGUA"
 }
 
-# --- NUEVA DATA DE ROLES (Agregada sin borrar nada) ---
 INFO_ARQUETIPOS = {
-    1: {"rol": "La Iniciadora", "fun": "Abrir, liderar, iniciar", "luz": "valentía, autonomía, acción", "som": "ego, soledad, impulsividad", "nec": "afirmarse sin aislarse", "per": "decidida"},
-    2: {"rol": "La Tejedora", "fun": "unir, cooperar, armonizar", "luz": "sensibilidad, empatía, diplomacia", "som": "dependencia, indecisión", "nec": "validarse sin disolverse", "per": "sensible"},
-    3: {"rol": "La Expresora", "fun": "expresar, inspirar, alegrar", "luz": "creatividad, carisma, palabra", "som": "dispersión, superficialidad", "nec": "enfocarse sin apagarse", "per": "optimista"},
-    4: {"rol": "La Arquitecta", "fun": "ordenar, estructurar, sostener", "luz": "disciplina, coherencia, constancia", "som": "rigidez, control", "nec": "fluir sin perder orden", "per": "confiable"},
-    5: {"rol": "La Exploradora", "fun": "mover, transformar, liberar", "luz": "adaptabilidad, libertad, expansión", "som": "inestabilidad, huida", "nec": "libertad con dirección", "per": "versátil"},
-    6: {"rol": "La Guardiana", "fun": "sanar, acompañar, nutrir", "luz": "amor, responsabilidad, belleza", "som": "sobrecarga, sacrificio", "nec": "cuidar sin olvidarse", "per": "equilibrada"},
-    7: {"rol": "La Sabia", "fun": "comprender, investigar, revelar", "luz": "intuición, análisis, misticismo", "som": "aislamiento, exceso mental", "nec": "compartir sin exponerse de más", "per": "intelectual"},
-    8: {"rol": "La Gestora", "fun": "dirigir, administrar, manifestar", "luz": "poder, abundancia, visión estratégica", "som": "control, ambición vacía", "nec": "poder con ética", "per": "autoridad natural"},
-    9: {"rol": "La Integradora", "fun": "cerrar ciclos, servir al colectivo", "luz": "compasión, humanidad, visión global", "som": "victimismo, agotamiento", "nec": "servir sin sacrificarse", "per": "sabia"},
+    1: {"rol": "Iniciador/a", "fun": "Abrir, liderar, iniciar", "luz": "valentía, autonomía, acción", "som": "ego, soledad, impulsividad", "nec": "afirmarse sin aislarse", "per": "decidido/a"},
+    2: {"rol": "Tejedor/a", "fun": "unir, cooperar, armonizar", "luz": "sensibilidad, empatía, diplomacia", "som": "dependencia, indecisión", "nec": "validarse sin disolverse", "per": "sensible"},
+    3: {"rol": "Expresor/a", "fun": "expresar, inspirar, alegrar", "luz": "creatividad, carisma, palabra", "som": "dispersión, superficialidad", "nec": "enfocarse sin apagarse", "per": "optimista"},
+    4: {"rol": "Arquitecto/a", "fun": "ordenar, estructurar, sostener", "luz": "disciplina, coherencia, constancia", "som": "rigidez, control", "nec": "fluir sin perder orden", "per": "confiable"},
+    5: {"rol": "Explorador/a", "fun": "mover, transformar, liberar", "luz": "adaptabilidad, libertad, expansión", "som": "inestabilidad, huida", "nec": "libertad con dirección", "per": "versátil"},
+    6: {"rol": "Guardian/a", "fun": "sanar, acompañar, nutrir", "luz": "amor, responsabilidad, belleza", "som": "sobrecarga, sacrificio", "nec": "cuidar sin olvidarse", "per": "equilibrado/a"},
+    7: {"rol": "Sabio/a", "fun": "comprender, investigar, revelar", "luz": "intuición, análisis, misticismo", "som": "aislamiento, exceso mental", "nec": "compartir sin exponerse de más", "per": "intelectual"},
+    8: {"rol": "Gestor/a", "fun": "dirigir, administrar, manifestar", "luz": "poder, abundancia, visión estratégica", "som": "control, ambición vacía", "nec": "poder con ética", "per": "autoridad natural"},
+    9: {"rol": "Integrador/a", "fun": "cerrar ciclos, servir al colectivo", "luz": "compasión, humanidad, visión global", "som": "victimismo, agotamiento", "nec": "servir sin sacrificarse", "per": "sabio/a"},
     11: {"rol": "El Canal Visionario", "fun": "traducir lo invisible en guía", "luz": "intuición elevada, inspiración", "som": "ansiedad, mesianismo", "nec": "anclaje y coherencia", "per": "un canal de luz"},
-    22: {"rol": "La Arquitecta Maestra", "fun": "materializar visiones colectivas", "luz": "liderazgo consciente, impacto real", "som": "sobrecarga, miedo al fracaso", "nec": "delegar y confiar", "per": "maestra"},
-    33: {"rol": "La Maestra Compasiva", "fun": "elevar desde el amor", "luz": "servicio consciente, enseñanza", "som": "autoabandono", "nec": "incluirse en el cuidado", "per": "guía espiritual"}
+    22: {"rol": "El/La Arquitecto/a Maestro/a", "fun": "materializar visiones colectivas", "luz": "liderazgo consciente, impacto real", "som": "sobrecarga, miedo al fracaso", "nec": "delegar y confiar", "per": "maestro/a"},
+    33: {"rol": "El/La Maestro/a Compasivo/a", "fun": "elevar desde el amor", "luz": "servicio consciente, enseñanza", "som": "autoabandono", "nec": "incluirse en el cuidado", "per": "guía espiritual"}
 }
 
 ARCHETYPES = {k: v["rol"] for k, v in INFO_ARQUETIPOS.items() if k <= 9}
-MASTER_DESTINIES = {11: "Visionaria", 22: "Maestra", 33: "Compasiva"}
+MASTER_DESTINIES = {11: "Visionario/a", 22: "Maestro/a", 33: "Compasivo/a"}
 
 REGALOS_DESC = {
     1: "El Don de la Iniciativa Tienes una chispa divina para empezar de cero. Tu regalo es la valentía y la originalidad. Nunca te faltarán ideas nuevas ni la fuerza para ser la primera en algo. Eres una líder nata por derecho divino.",
@@ -85,66 +84,29 @@ st.markdown("""
     .luxury-text-block { color: #2F2F2F; background-color: #FAFAFA; padding: 30px; border-radius: 10px; border-left: 5px solid #D4AF37; line-height: 1.8; font-size: 1.05rem; }
     .mision-container { border: 2px solid #D4AF37; padding: 30px; border-radius: 15px; background-color: #FFFFFF; }
     .mision-header { color: #D4AF37; font-size: 2rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #D4AF37; padding-bottom: 10px; }
-    .param-box { background-color: #D4AF37; color: white; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; }
     </style>
     """, unsafe_allow_html=True)
 
 st.markdown("<p class='titulo-vibracional'>MAPA VIBRACIONAL</p>", unsafe_allow_html=True)
 st.markdown("<p class='subtitulo-profesional'>NUMEROLOGÍA PROFESIONAL</p>", unsafe_allow_html=True)
 
-# --- 4. PANEL LATERAL ---
+# --- 4. PANEL LATERAL (Información movida aquí) ---
 st.sidebar.markdown("### ✨ DATOS DE ENTRADA")
 nombre_raw = st.sidebar.text_input("Nombre Completo:")
-fecha_nac = st.sidebar.date_input("Fecha de Nacimiento:", value=datetime(1981, 7, 25), min_value=datetime(1900, 1, 1), max_value=datetime(2026, 12, 31))
-anio_ref = st.sidebar.number_input("Año de Consulta:", value=2026)
 
-if nombre_raw:
-    nombre = normalizar(nombre_raw)
-    palabras = nombre.split()
-    alertas = []
-    mision_pre_suma, sum_total_vocales, sum_total_consonantes = 0, 0, 0
-    
-    for p in palabras:
-        v_pal = sum(MAPA_VALORES.get(l, 0) for l in p)
-        v_voc = sum(MAPA_VALORES.get(l, 0) for l in p if l in "AEIOU")
-        v_con = sum(MAPA_VALORES.get(l, 0) for l in p if l.isalpha() and l not in "AEIOU")
-        p_reducida = reducir(v_pal)
-        mision_pre_suma += p_reducida
-        if p_reducida in [11, 22, 33]: alertas.append(f"✨ Maestro {p_reducida} en Nombre/Apellido: {p}")
-        if reducir(v_voc) in [11, 22, 33]: alertas.append(f"🕊️ Alma Maestra {reducir(v_voc)} en: {p}")
-        if reducir(v_con) in [11, 22, 33]: alertas.append(f"🎭 Personalidad Maestra {reducir(v_con)} en: {p}")
-        sum_total_vocales += v_voc
-        sum_total_consonantes += v_con
+# 1. Fecha de Nacimiento (con límite eterno)
+fecha_nac = st.sidebar.date_input("Fecha de Nacimiento:", value=datetime(2000, 1, 1), min_value=datetime(1900, 1, 1), max_value=datetime(9999, 12, 31))
 
-    d, m, a = fecha_nac.day, fecha_nac.month, fecha_nac.year
-    alma, mision = reducir(sum_total_vocales), reducir(mision_pre_suma)
-    pers, dest = reducir(sum_total_consonantes), reducir(reducir(sum_total_vocales) + reducir(sum_total_consonantes))
-    camino = reducir(reducir(d) + reducir(m) + reducir(a))
-    regalo = reducir(sum(int(x) for x in str(a)[-2:]))
-    anio_p = reducir(reducir(d) + reducir(m) + reducir(anio_ref))
+# 2. Fecha de Consulta (Cambiamos number_input por date_input para que sea un calendario libre)
+fecha_ref = st.sidebar.date_input("Fecha de Consulta:", value=datetime.now(), min_value=datetime(1900, 1, 1), max_value=datetime(9999, 12, 31))
 
-    t1, t2, t3, t4, t5 = st.tabs(["🔱 MAPEO PRINCIPAL", "📖 SIGNIFICADO DE LOS NÚMEROS", "🌀 TRÍADA DE REALIZACIÓN", "✨ MISIÓN SAGRADA", "💎 REVELACIÓN GENERAL"])
+# 3. Extraemos el año de esa fecha para que los cálculos sigan funcionando igual
+anio_ref = fecha_ref.year
 
-    with t1:
-        if alertas:
-            st.markdown("<p style='color: #B8860B; font-weight: bold; text-align: center;'>⚠️ FRECUENCIAS MAESTRAS DETECTADAS</p>", unsafe_allow_html=True)
-            for msg in alertas: st.markdown(f"<div class='alerta-maestra'>{msg}</div>", unsafe_allow_html=True)
-        st.write("---")
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("MISIÓN DE VIDA", mision)
-        c2.metric("CAMINO DE VIDA", camino)
-        c3.metric("ALMA", alma)
-        c4.metric("REGALO DIVINO", regalo)
-        c5, c6, c7, c8 = st.columns(4)
-        c5.metric("PERSONALIDAD", pers)
-        c6.metric("DESTINO", dest)
-        c7.metric("AÑO PERSONAL", anio_p)
-        e_alma, e_pers, e_dest = ELEMENTOS.get(alma), ELEMENTOS.get(pers), ELEMENTOS.get(dest)
-        c8.metric("TRÍADA DE REALIZACIÓN", len(set([e_alma, e_pers, e_dest])))
-
-    with t2:
-        st.markdown(f"""
-        <div class='luxury-text-block'>
+# BOTÓN "?" (Expander con toda la información original)
+with st.sidebar.expander("❓ SIGNIFICADO DE LOS NÚMEROS"):
+    st.markdown(f"""
+        <div style='font-size: 0.85rem; color: #D4AF37; text-align: justify;'>
         <b>🧮SIGNIFICADO DE LOS NÚMEROS</b><br>
         <b>🟢 Los Números Base (Del 1 al 9) NUMEROLOGÍA</b><br>
         1 - El Líder / El Iniciador: Es la energía del "Yo Soy". Representa independencia, originalidad y el impulso para comenzar cosas nuevas. En desequilibrio: puede ser autoritario o egoísta.<br>
@@ -160,7 +122,6 @@ if nombre_raw:
         11 - El Mensajero / El Visionario: (Tu número y el de tu marca). Es un canal de luz. Tiene una intuición aguda y su misión es inspirar y elevar la consciencia de los demás. Es el "Puente" entre mundos.<br>
         22 - El Arquitecto Maestro: (Tu día de nacimiento). Es el número más poderoso. Tiene la visión del 11 pero la capacidad práctica del 4. Puede construir proyectos gigantescos que beneficien a la humanidad.<br>
         33 - El Guía Espiritual: Es la vibración del "Amor Incondicional". Su misión es la sanación a gran escala y la enseñanza a través del ejemplo de sacrificio y servicio puro.<br><br>
-
         <b>🕊️ Guía Espiritual y Angelical de los Números</b><br>
         <b>1 - El Rayo de la Creación</b><br>
         Espiritual: Representa la unidad con la Fuente. Es el "Yo Soy" manifestado. Simboliza que tus pensamientos son semillas de realidad.<br>
@@ -189,18 +150,16 @@ if nombre_raw:
         <b>9 - La Consciencia Crística</b><br>
         Espiritual: Representa el amor universal y la culminación del viaje del alma. Es el número del "Trabajador de la Luz".<br>
         Angelical: "Es hora de ponerte a trabajar en tu misión de vida sin demora. El mundo necesita tu luz. Cierra ciclos para empezar tu labor sagrada".<br><br>
-
         <b>✨ Los Números Maestros (Frecuencias Angélicas Superiores)</b><br>
-        <b>11 - El Portal de Luz (Tu Marca)</b><br>
+        11 - El Portal de Luz (Tu Marca)<br>
         Espiritual: Es el portal de la iluminación. Representa a los "Mensajeros de la Nueva Era". Es la conexión directa con la sabiduría del alma.<br>
         Angelical: "Presta mucha atención a tus ideas repetitivas; son las respuestas a tus oraciones. Estás siendo llamado a guiar a otros con tu ejemplo".<br>
-        <b>22 - El Arquitecto del Cielo en la Tierra</b><br>
+        22 - El Arquitecto del Cielo en la Tierra<br>
         Espiritual: Representa la capacidad de manifestar los sueños más elevados en la realidad física. Es la maestría sobre la materia.<br>
         Angelical: "Mantén la visión a largo plazo. Tienes la protección divina para construir algo grande que servirá a muchas personas. Actúa con disciplina".<br>
-        <b>33 - El Avatar del Amor</b><br>
+        33 - El Avatar del Amor<br>
         Espiritual: Es la frecuencia de la compasión absoluta. Representa la energía del Maestro que enseña a través del amor puro.<br>
         Angelical: "Tu vibración está elevando la de quienes te rodean. Tu presencia es una blessing. Enfócate en sanar a través de tu bondad".<br><br>
-
         <b>🎁 Significado del Regalo Divino (Dones de Nacimiento)</b><br>
         Regalo 1: {REGALOS_DESC.get(1)}<br>
         Regalo 2: {REGALOS_DESC.get(2)}<br>
@@ -214,7 +173,6 @@ if nombre_raw:
         <b>✨ Regalos Maestros</b><br>
         Regalo 11: {REGALOS_DESC.get(11)}<br>
         Regalo 22: {REGALOS_DESC.get(22)}<br><br>
-
         <b>ELEMENTOS</b><br>
         <b>🔥 FUEGO (1, 3, 9)</b><br>
         Fuerza, Acción, Intuición y Pasión. Son personas que inician y lideran.<br><br>
@@ -226,6 +184,76 @@ if nombre_raw:
         Emoción, Empatía y Sensibilidad. Son los sanadores y cuidadores.
         </div>
         """, unsafe_allow_html=True)
+
+# --- 5. LÓGICA DE CÁLCULO ---
+if nombre_raw:
+    nombre = normalizar(nombre_raw)
+    palabras = nombre.split()
+    alertas = []
+    mision_pre_suma, sum_total_vocales, sum_total_consonantes = 0, 0, 0
+    
+    for p in palabras:
+        v_pal = sum(MAPA_VALORES.get(l, 0) for l in p)
+        v_voc = sum(MAPA_VALORES.get(l, 0) for l in p if l in "AEIOU")
+        v_con = sum(MAPA_VALORES.get(l, 0) for l in p if l.isalpha() and l not in "AEIOU")
+        p_reducida = reducir(v_pal)
+        mision_pre_suma += p_reducida
+        if p_reducida in [11, 22, 33]: alertas.append(f"✨ Maestro {p_reducida} en Nombre/Apellido: {p}")
+        if reducir(v_voc) in [11, 22, 33]: alertas.append(f"🕊️ Alma Maestra {reducir(v_voc)} en: {p}")
+        if reducir(v_con) in [11, 22, 33]: alertas.append(f"🎭 Personalidad Maestra {reducir(v_con)} en: {p}")
+        sum_total_vocales += v_voc
+        sum_total_consonantes += v_con
+
+    d, m, a = fecha_nac.day, fecha_nac.month, fecha_nac.year
+    alma, mision = reducir(sum_total_vocales), reducir(mision_pre_suma)
+    pers, dest = reducir(sum_total_consonantes), reducir(reducir(sum_total_vocales) + reducir(sum_total_consonantes))
+    camino = reducir(reducir(d) + reducir(m) + reducir(a))
+    regalo = reducir(sum(int(x) for x in str(a)[-2:]))
+    anio_p = reducir(reducir(d) + reducir(m) + reducir(anio_ref))
+
+    # SOLO 4 PESTAÑAS (Pestaña de significados eliminada)
+    t1, t3, t4, t5 = st.tabs(["🔱 MAPEO PRINCIPAL", "🌀 TRÍADA DE REALIZACIÓN", "✨ MISIÓN SAGRADA", "💎 REVELACIÓN GENERAL"])
+
+    with t1:
+        # --- PLACA DE IDENTIDAD LUXURY ---
+        st.markdown(f"""
+            <div style="
+                text-align: center; 
+                padding: 20px; 
+                border-radius: 15px; 
+                background: #FFFDF5; 
+                border: 1px solid #F4EBD0;
+                box-shadow: 0px 4px 15px rgba(212, 175, 55, 0.15);
+                margin-bottom: 30px;
+            ">
+                <p style="
+                    color: #D4AF37; 
+                    font-size: 24px; 
+                    font-weight: bold; 
+                    letter-spacing: 3px;
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+                    margin: 0;
+                ">
+                    ✨ Identidad 11:11 - {nombre_raw.upper()} ✨
+                </p>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        if alertas:
+            st.markdown("<p style='color: #B8860B; font-weight: bold; text-align: center;'>⚠️ FRECUENCIAS MAESTRAS DETECTADAS</p>", unsafe_allow_html=True)
+            for msg in alertas: st.markdown(f"<div class='alerta-maestra'>{msg}</div>", unsafe_allow_html=True)
+        st.write("---")
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("MISIÓN DE VIDA", mision)
+        c2.metric("CAMINO DE VIDA", camino)
+        c3.metric("ALMA", alma)
+        c4.metric("REGALO DIVINO", regalo)
+        c5, c6, c7, c8 = st.columns(4)
+        c5.metric("PERSONALIDAD", pers)
+        c6.metric("DESTINO", dest)
+        c7.metric("AÑO PERSONAL", anio_p)
+        e_alma, e_pers, e_dest = ELEMENTOS.get(alma), ELEMENTOS.get(pers), ELEMENTOS.get(dest)
+        c8.metric("TRÍADA DE REALIZACIÓN", len(set([e_alma, e_pers, e_dest])))
 
     with t3:
         st.markdown("<p style='color: #B8860B; font-weight: bold; font-size: 1.4rem;'>🌀 DIAGNÓSTICO DE TU TRÍADA</p>", unsafe_allow_html=True)
@@ -266,28 +294,22 @@ if nombre_raw:
         st.markdown(f"<div class='mision-container'><div class='mision-header'>{eje_titulo}</div><div class='luxury-text-block' style='background:white; border:none;'><span style='color:#D4AF37; font-weight:bold;'>MISIÓN:</span> {mision_txt}<br><br><span style='color:#D4AF37; font-weight:bold;'>ENFOQUE:</span> {enfoque}<br><br><div style='background:#D4AF37; color:white; padding:15px; border-radius:8px; font-style:italic; text-align:center;'>FRASE: {frase}</div><br><span style='color:#8B0000; font-weight:bold;'>⚠️ SOMBRA:</span> {advertencia}<br><br><div style='border:1px dashed #D4AF37; padding:15px; border-radius:8px; background:#FFFDF5;'><span style='color:#D4AF37; font-weight:bold;'>💡 CONSEJO:</span> {consejo}</div></div></div>", unsafe_allow_html=True)
 
     with t5:
-        # 1. Extraemos la data
         inf_a = INFO_ARQUETIPOS.get(alma, {})
         inf_p = INFO_ARQUETIPOS.get(pers, {})
         inf_d = INFO_ARQUETIPOS.get(dest, {})
-        
-        # 2. Generamos la identidad (ahora en su propia línea)
         identidad_final = generate_identity(alma, dest).upper()
 
-        # 3. El markdown pegado al borde izquierdo para evitar el fondo negro
         st.markdown(f"""
         <div style="text-align: center; padding: 50px; border: 3px double #D4AF37; border-radius: 20px; background-color: #FFFFFF; margin-top: 20px;">
         <p style="color: #B8860B; letter-spacing: 7px; font-size: 14px; font-weight: bold; margin-bottom: 20px;">IDENTIDAD 11:11 DETECTADA</p>
         <h1 style="color: #D4AF37; font-family: 'serif'; font-size: 50px; font-weight: 900; margin-bottom: 10px; line-height: 1.2;">{identidad_final}</h1>
         <div style="width: 150px; height: 2px; background-color: #D4AF37; margin: 0 auto 30px auto;"></div>
-    
         <div style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.8; color: #2F2F2F; font-size: 1.1rem;">
         <p><b>✨ Esencia del Alma:</b> “Tu alma encarna el rol de <b>{inf_a.get('rol')}</b>, lo que significa que necesitas <b>{inf_a.get('nec')}</b> para sentirte en equilibrio.”</p>
         <p><b>🎭 Proyección al mundo:</b> “A nivel externo, proyectas la energía de <b>{inf_p.get('rol')}</b>, por lo que las personas suelen percibirte como alguien <b>{inf_p.get('per')}</b>.”</p>
         <p><b>🔱 Misión evolutiva:</b> “Tu destino te llama a encarnar el rol de <b>{inf_d.get('rol')}</b>, guiándote a <b>{inf_d.get('fun')}</b>.”</p>
-        <p><b>☯️ Luz y Sombra:</b> Al caminar hacia tu destino, tu mayor fortaleza es la <b>{inf_d.get('luz')}</b>, pero debes estar atenta a la sombra de <b>{inf_d.get('som')}</b>.</p>
+        <p><b>☯️ Luz y Sombra:</b> Al caminar hacia tu destino, tu mayor fortaleza es la <b>{inf_d.get('luz')}</b>, pero debes estar atento/a a la sombra de <b>{inf_d.get('som')}</b>.</p>
         </div>
-
         <div style="margin-top: 50px; display: flex; justify-content: center; gap: 60px;">
         <div style="text-align: center;"><p style="color: #B8860B; font-size: 13px; font-weight: bold; text-transform: uppercase;">Esencia (Alma)</p><p style="color: #2F2F2F; font-size: 18px;">{inf_a.get('rol')}</p></div>
         <div style="text-align: center;"><p style="color: #B8860B; font-size: 13px; font-weight: bold; text-transform: uppercase;">Manifestación (Destino)</p><p style="color: #2F2F2F; font-size: 18px;">{inf_d.get('rol')}</p></div>
